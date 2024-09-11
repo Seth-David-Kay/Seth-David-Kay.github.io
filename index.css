@@ -1,0 +1,8 @@
+body {
+    background-color: #595d69;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    color: #1f2027;
+}
