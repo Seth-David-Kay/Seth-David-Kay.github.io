@@ -26,7 +26,7 @@ function cat_walk() {
   }
 
   // Function to create a cat and handle its movement
-  function createCat(x = 32, y = 32) {
+  function createCat(x = window.innerWidth/2, y = window.innerHeight/2) {
     const catDiv = document.createElement("div");
     catDiv.style.width = "32px";
     catDiv.style.height = "32px";
