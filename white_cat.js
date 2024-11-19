@@ -53,11 +53,15 @@ function cat_walk() {
       } else {
         // When the cat reaches the mouse, delete it and spawn new cats
         clearInterval(catWalk);
-        document.body.removeChild(catDiv);
-        if (catCount < 100) {
-          spawnCats(2); // Spawn two cats if the count is less than 100
+        if (catCount < 50) {
+          document.body.removeChild(catDiv);
+          spawnCats(2); // Spawn two cats if the count is less than 50
         } else {
-          spawnCats(1); // Spawn one cat if the count is 100 or more
+          // Tint the cat with a random color and make it run off the screen
+          const randomHue = Math.random() * 360;
+          catDiv.style.filter = `hue-rotate(${randomHue}deg) saturate(200%) brightness(150%)`;
+          runOffScreen(catDiv, catPosX, catPosY);
+          spawnCats(1);
         }
         return;
       }
@@ -72,6 +76,38 @@ function cat_walk() {
       setSprite(catDiv, Math.floor(Date.now() / 100));
       catDiv.style.left = `${catPosX - 16}px`;
       catDiv.style.top = `${catPosY - 16}px`;
+    }, 100);
+  }
+
+  // Function to make the cat run off the screen
+  function runOffScreen(catDiv, startX, startY) {
+    const angle = Math.random() * 2 * Math.PI; // Random angle in radians
+    const directionX = Math.cos(angle);
+    const directionY = Math.sin(angle);
+
+    const runInterval = setInterval(() => {
+      startX += directionX * cat_speed;
+      startY += directionY * cat_speed;
+
+      catDiv.style.left = `${startX - 16}px`;
+      catDiv.style.top = `${startY - 16}px`;
+
+      // Flip the cat if it's moving to the left
+      if (directionX < 0) {
+        catDiv.style.transform = "scaleX(-1)";
+      } else {
+        catDiv.style.transform = "scaleX(1)";
+      }
+
+      if (
+        startX < 0 ||
+        startX > window.innerWidth ||
+        startY < 0 ||
+        startY > window.innerHeight
+      ) {
+        clearInterval(runInterval);
+        document.body.removeChild(catDiv);
+      }
     }, 100);
   }
 
