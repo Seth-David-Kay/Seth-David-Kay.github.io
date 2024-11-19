@@ -2,6 +2,7 @@ function cat_walk() {
   let mousePosX = 0;
   let mousePosY = 0;
   const cat_speed = 10;
+  let catCount = 0; // Counter to keep track of the number of cats
 
   const spriteSets = {
     move: [
@@ -36,6 +37,7 @@ function cat_walk() {
     catDiv.style.top = `${y}px`;
 
     document.body.appendChild(catDiv);
+    catCount++; // Increment the cat counter
 
     let catPosX = x;
     let catPosY = y;
@@ -49,10 +51,14 @@ function cat_walk() {
         catPosX += (diffX / distance) * cat_speed;
         catPosY += (diffY / distance) * cat_speed;
       } else {
-        // When the cat reaches the mouse, delete it and spawn two more cats
+        // When the cat reaches the mouse, delete it and spawn new cats
         clearInterval(catWalk);
         document.body.removeChild(catDiv);
-        spawnCats(2);
+        if (catCount < 100) {
+          spawnCats(2); // Spawn two cats if the count is less than 100
+        } else {
+          spawnCats(1); // Spawn one cat if the count is 100 or more
+        }
         return;
       }
 
