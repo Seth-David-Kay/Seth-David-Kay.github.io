@@ -28,8 +28,8 @@ function cat_walk() {
   // Function to create a cat and handle its movement
   function createCat(x = window.innerWidth/2, y = window.innerHeight/2) {
     const catDiv = document.createElement("div");
-    catDiv.style.width = "32px";
-    catDiv.style.height = "32px";
+    catDiv.style.width = "64px";
+    catDiv.style.height = "64px";
     catDiv.style.position = "fixed";
     catDiv.style.backgroundImage = "url('./white_cat.gif')";
     catDiv.style.imageRendering = "pixelated";
@@ -58,8 +58,8 @@ function cat_walk() {
           spawnCats(2); // Spawn two cats if the count is less than 50
         } else {
           // Tint the cat with a random color and make it run off the screen
-          const randomHue = Math.random() * 360;
-          catDiv.style.filter = `hue-rotate(${randomHue}deg) saturate(200%) brightness(150%)`;
+          // const randomHue = Math.random() * 360;
+          // catDiv.style.filter = `hue-rotate(${randomHue}deg) saturate(200%) brightness(150%)`;
           runOffScreen(catDiv, catPosX, catPosY);
           spawnCats(1);
         }
