@@ -28,13 +28,15 @@ function cat_walk() {
   // Function to create a cat and handle its movement
   function createCat(x = window.innerWidth/2, y = window.innerHeight/2) {
     const catDiv = document.createElement("div");
-    catDiv.style.width = "64px";
-    catDiv.style.height = "64px";
+    catDiv.style.width = "32px";
+    catDiv.style.height = "32px";
     catDiv.style.position = "fixed";
     catDiv.style.backgroundImage = "url('./white_cat.gif')";
     catDiv.style.imageRendering = "pixelated";
     catDiv.style.left = `${x}px`;
     catDiv.style.top = `${y}px`;
+    catDiv.style.transform = "scale(1.5)"
+    // catDiv.style.transformOrigin = "top left"
 
     document.body.appendChild(catDiv);
     catCount++; // Increment the cat counter
@@ -68,9 +70,9 @@ function cat_walk() {
 
       // Flip the cat if it's moving to the left
       if (diffX < 0) {
-        catDiv.style.transform = "scaleX(-1)";
+        catDiv.style.transform = "scale(1.5) scaleX(-1)";
       } else {
-        catDiv.style.transform = "scaleX(1)";
+        catDiv.style.transform = "scale(1.5) scaleX(1)";
       }
 
       setSprite(catDiv, Math.floor(Date.now() / 100));
@@ -94,9 +96,9 @@ function cat_walk() {
 
       // Flip the cat if it's moving to the left
       if (directionX < 0) {
-        catDiv.style.transform = "scaleX(-1)";
+        catDiv.style.transform = "scale(1.5) scaleX(-1)";
       } else {
-        catDiv.style.transform = "scaleX(1)";
+        catDiv.style.transform = "scale(1.5) scaleX(1)";
       }
 
       if (
