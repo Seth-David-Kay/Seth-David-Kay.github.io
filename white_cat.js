@@ -101,6 +101,8 @@ function cat_walk() {
         catDiv.style.transform = "scale(1.5) scaleX(1)";
       }
 
+      setSprite(catDiv, Math.floor(Date.now() / 100)); // Update the sprite frame
+
       if (
         startX < 0 ||
         startX > window.innerWidth ||
